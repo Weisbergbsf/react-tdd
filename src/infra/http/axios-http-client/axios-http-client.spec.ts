@@ -1,4 +1,4 @@
-import { AxiosHttpClient } from './axios-http-client'
+import { AxiosHttpClientAdapter } from './axios-http-client'
 import axios from 'axios'
 import faker from 'faker'
 import { HttpPostParams } from '@/data/protocols/http'
@@ -11,8 +11,8 @@ const mockedAxiosResult = {
 }
 mockedAxios.post.mockResolvedValue(mockedAxiosResult)
 
-const mockeSut = (): AxiosHttpClient => {
-  return new AxiosHttpClient()
+const mockeSut = (): AxiosHttpClientAdapter => {
+  return new AxiosHttpClientAdapter()
 }
 
 const mockPostRequest = (): HttpPostParams<any> => ({
@@ -20,7 +20,7 @@ const mockPostRequest = (): HttpPostParams<any> => ({
   body: faker.random.objectElement()
 })
 
-describe('AxiosHttpClient', () => {
+describe('AxiosHttpClientAdapter', () => {
   test('Should call axios with correct values', async () => {
     const request = mockPostRequest()
     const sut = mockeSut()
