@@ -1,6 +1,5 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-
 module.exports = {
   mode: 'development',
   entry: './src/main/index.tsx',
@@ -35,7 +34,7 @@ module.exports = {
     }]
   },
   devServer: {
-    contentBase: '/public',
+    contentBase: './public',
     writeToDisk: true,
     historyApiFallback: true
   },
