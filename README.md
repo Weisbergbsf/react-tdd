@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/Weisbergbsf/react-tdd.svg?branch=master)](https://travis-ci.org/Weisbergbsf/react-tdd)
