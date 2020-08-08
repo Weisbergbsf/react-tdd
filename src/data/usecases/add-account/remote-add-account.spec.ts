@@ -3,7 +3,9 @@ import { HttpPostClientSpy } from '@/data/test'
 import faker from 'faker'
 import { AddAccountParams } from '@/domain/usecases'
 import { AccountModel } from '@/domain/model'
-import { mockAccountParams } from '@/domain/test'
+import { mockAddAccountParams } from '@/domain/test'
+import { HttpStatusCode } from '@/data/protocols/http'
+import { EmailInUseError } from '@/domain/errors'
 
 type SutTypes = {
   sut: RemoteAddAccount
@@ -23,14 +25,23 @@ describe('RemoteAddAccount', () => {
   test('Should call HttpPostClient with correct URL', async () => {
     const url = faker.internet.url()
     const { sut, httpPostClientSpy } = makeSut(url)
-    await sut.add(mockAccountParams())
+    await sut.add(mockAddAccountParams())
     expect(httpPostClientSpy.url).toBe(url)
   })
 
   test('Should call HttpPostClient with correct body', async () => {
     const { sut, httpPostClientSpy } = makeSut()
-    const addAccountParams = mockAccountParams()
+    const addAccountParams = mockAddAccountParams()
     await sut.add(addAccountParams)
     expect(httpPostClientSpy.body).toEqual(addAccountParams)
+  })
+
+  test('Should throw EmailInUseError if HttpPostClient returns 403', async () => {
+    const { sut, httpPostClientSpy } = makeSut()
+    httpPostClientSpy.response = {
+      statusCode: HttpStatusCode.forbidden
+    }
+    const promise = sut.add(mockAddAccountParams())
+    await expect(promise).rejects.toThrow(new EmailInUseError())
   })
 })
