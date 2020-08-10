@@ -12,7 +12,7 @@ type Props = {
   saveAccesToken: SaveAccessToken
 }
 
-const Signup: React.FC<Props> = ({ validation, addAccount, saveAccesToken }: Props) => {
+const SignUp: React.FC<Props> = ({ validation, addAccount, saveAccesToken }: Props) => {
   const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
@@ -91,4 +91,4 @@ const Signup: React.FC<Props> = ({ validation, addAccount, saveAccesToken }: Pro
   )
 }
 
-export default Signup
+export default SignUp
