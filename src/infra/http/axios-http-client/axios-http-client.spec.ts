@@ -51,5 +51,15 @@ describe('AxiosHttpClientAdapter', () => {
       await sut.get(request)
       expect(mockedAxios.get).toHaveBeenCalledWith(request.url)
     })
+
+    test('Should return correct response on axios.get', async () => {
+      const { sut, mockedAxios } = mockeSut()
+      const httpResponse = await sut.get(mockGetRequest())
+      const axiosReponse = await mockedAxios.get.mock.results[0].value
+      expect(httpResponse).toEqual({
+        statusCode: axiosReponse.status,
+        body: axiosReponse.data
+      })
+    })
   })
 })
