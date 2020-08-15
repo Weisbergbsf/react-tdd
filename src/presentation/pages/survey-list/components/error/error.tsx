@@ -1,4 +1,4 @@
-import Styles from './item-empty-styles.scss'
+import Styles from './error-styles.scss'
 import { SurveyContext } from '@/presentation/pages/survey-list/components'
 import React, { useContext } from 'react'
 

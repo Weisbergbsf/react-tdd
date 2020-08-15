@@ -1,4 +1,4 @@
-import { makeLocalStorageAdapter } from '@/main/factories/cache/local-storage-adapter-factory'
+import { makeLocalStorageAdapter } from '@/main/factories/cache'
 import { AccountModel } from '@/domain/model'
 import { UnexpectedError } from '@/domain/errors'
 
