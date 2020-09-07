@@ -13,7 +13,7 @@
     "cypress/globals": true
   },
   "plugins": [
-    "react", "cypress"
+    "react", "cypress", "@typescript-eslint"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
